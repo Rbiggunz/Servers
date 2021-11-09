@@ -12,7 +12,8 @@ ispconfig sequence:
 7. all folders and sub chmod 755, all files chmod 644
 8. check site health => Info. If WP cannot write, change owner of directories to web14(or whatever number it is):client1.
 9. remove website archive from both servers
-10. download SSL folder from provider, like Godaddy etc. Then Apache conf change:
+10. check database for http://www.website.com links to avoid mixed content error
+11. add SSl through ispconfig or download SSL folder from provider, like Godaddy etc. Then Apache conf change:
 
 etc/nginx/sites-available: chmod 777 website.co.uk.vhost
 etc/nginx/sites-enabled/website.vhost:
