@@ -1,0 +1,10 @@
+server {
+
+    # GoDaddy SSL domain verification
+   location = /.well-known/pki-validation/godaddy.html {
+        alias /home/ardmdev/sites/belfast-harbour.co.uk/current/web/.well-known/pki-validation/godaddy.html;
+    }
+
+} # server
+
+#
