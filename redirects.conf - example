@@ -1,0 +1,166 @@
+make as a separate file and then add through website_name.vhost file like so:
+
+### Nginx configuration.
+server {
+    listen 80; # IPv4
+    server_name www.cruise.belfast-harbour.co.uk cruise.belfast-harbour.co.uk;
+    return 301 https://cruise.belfast-harbour.co.uk$request_uri;
+
+}
+
+server {
+
+    ## Include general nginx hardening rules.
+    include sites-available/general_hardening.conf;
+
+    ## Customer redirects
+    include sites-available/redirects.conf;
+    
+    ## WP Hardening
+    include sites-available/wp_hardening.conf;
+}
+
+
+here is the code example:
+
+
+rewrite ^/MyHarbourCompetition /myharbourcompetition permanent;
+
+rewrite ^/about-us/history/heritage-room /harbour-estate-access/use-of-the-harbour-office/heritage-room permanent;
+rewrite ^/about-us/history/fine-art /corporate/history/fine-art permanent;
+rewrite ^/about-us/history/building-access-tours /harbour-estate-access/use-of-the-harbour-office/building-access-tours permanent;
+rewrite ^/about-us/history/titanic-port /corporate/history/titanic-port permanent;
+rewrite ^/about-us/history/historic-videos /corporate/history/historic-videos permanent;
+rewrite ^/about-us/history /corporate/history permanent;
+
+rewrite ^/about-us/tourism /harbour-estate-access/tourism permanent;
+rewrite ^/about-us/location-map /harbour-estate-access/location-map permanent;
+rewrite ^/about-us/corporate-responsibility /corporate/corporate-responsibility permanent;
+rewrite ^/about-us/careers /corporate/careers permanent;
+rewrite ^/about-us/jobs /corporate/careers permanent;
+
+
+rewrite ^/about-us/our-status/freedom-of-information /corporate/our-status/freedom-of-information permanent;
+rewrite ^/about-us/our-status/terms-conditions /corporate/our-status/terms-conditions permanent;
+rewrite ^/about-us/our-status /corporate/our-status permanent;
+
+rewrite ^/about-us/contact-us /corporate/contact-us permanent;
+rewrite ^/corporate/policing /harbour-estate-access/belfast-harbour-police/neighbourhood-policing-team permanent;
+rewrite ^/about-us /corporate/about-us-1 permanent;
+
+
+rewrite ^/agents-portal https://agents.belfast-harbour.co.uk/ permanent;
+
+rewrite ^/?month=$ / permanent;
+
+rewrite ^/about-us/access-to-the-harbour              /about-us/history/building-access-tours permanent;
+rewrite ^/about-us/charities-donations                /about-us/corporate-responsibility permanent;
+rewrite ^/about-us/complaints                         /about-us/contact-us permanent;
+rewrite ^/about-us/corporate-responsibility-programme /about-us/corporate-responsibility permanent;
+rewrite ^/about-us/current-vacancies                  /about-us/careers permanent;
+rewrite ^/about-us/education                          /about-us/corporate-responsibility permanent;
+rewrite ^/about-us/freedom-of-information             /about-us/our-status/freedom-of-information permanent;
+rewrite ^/about-us/legal-status                       /about-us/our-status permanent;
+rewrite ^/about-us/location$                          /about-us/location-map permanent;
+rewrite ^/about-us/map-of-estate                      /real-estate/estate-maps permanent;
+rewrite ^/about-us/meet-the-careers-team              /about-us permanent;
+rewrite ^/about-us/sponsorship                        /about-us/corporate-responsibility permanent;
+
+rewrite ^/components/email_me.php?staffid=1 /about-us/contact-us permanent;
+
+rewrite ^/corporate-overview/business-directory /corporate permanent;
+rewrite ^/corporate/annual-reports              /documents permanent;
+rewrite ^/corporate/business-directory          /corporate permanent;
+rewrite ^/corporate/corporate-facts-figures     /documents permanent;
+rewrite ^/corporate/corporate-plan              /documents/download/14 permanent;
+rewrite ^/corporate/emergency-plan              /documents permanent;
+rewrite ^/corporate/environmental-policy        /corporate/environment-1 permanent;
+rewrite ^/corporate/health-safety               /corporate/safety permanent;
+rewrite ^/corporate/meet-the-board              /corporate/the-board permanent;
+rewrite ^/corporate/register-business           /corporate permanent;
+rewrite ^/corporate/role-tourism                /about-us/tourism permanent;
+
+rewrite ^/interactive-harbour / permanent;
+
+rewrite ^/legacy                        /about-us/history/our-legacy permanent;
+rewrite ^/legacy/fine-art-collection    /about-us/history/fine-art permanent;
+rewrite ^/legacy/heritage-room          /about-us/history/heritage-room permanent;
+rewrite ^/legacy/history-harbour-office /about-us/history permanent;
+rewrite ^/legacy/port-pictures          /port/the-port-in-pictures permanent;
+rewrite ^/legacy/titanic-port           /about-us/history/titanic-port permanent;
+
+rewrite ^/map/estate.html    /real-estate/estate-maps permanent;
+rewrite ^/map/index.html     /about-us/location-map permanent;
+rewrite ^/map/port.html      /about-us/location-map permanent;
+rewrite ^/map/transport.html /about-us/location-map permanent;
+
+
+rewrite ^/news/article([0-9]+)/([A-Za-z0-9-]+)    /news permanent;
+
+rewrite ^/news/job-vacancies         /about-us/careers permanent;
+rewrite ^/news/news-archive          /news permanent;
+rewrite ^/news/publications          /documents permanent;
+rewrite ^/news/tenders-opportunities / permanent;
+
+rewrite ^/mediaplayer/$ / permanent;
+rewrite ^/player/$      / permanent;
+
+rewrite ^/port/break-bulk             /port/business-through-the-port permanent;
+rewrite ^/port/business-with-the-port /port/business-through-the-port permanent;
+rewrite ^/port/cruise-schedule        /cruise-schedule permanent;
+rewrite ^/port/dry-bulk               /port/business-through-the-port permanent;
+rewrite ^/port/dry-docks              /port/business-through-the-port permanent;
+rewrite ^/port/hazards-defects        /port permanent;
+rewrite ^/port/incident-reporting     /about-us/contact-us permanent;
+rewrite ^/port/liquid-bulk            /port/business-through-the-port permanent;
+rewrite ^/port/lo-lo                  /port/business-through-the-port permanent;
+rewrite ^/port/logistics-warehouses   /port/business-through-the-port permanent;
+rewrite ^/port/marina-facilities      /port/marina/marina-facilities permanent;
+rewrite ^/port/marina-tariffs         /port/marina/tariffs permanent;
+rewrite ^/port/marine-safety          /port/marina/operating-rules permanent;
+rewrite ^/port/marine-services        /port permanent;
+rewrite ^/port/meet-the-ops-team      /port/commercial-team permanent;
+rewrite ^/port/meet-the-port-team     /port/port-team permanent;
+rewrite ^/port/navigation$            /port/navigation-pilotage permanent;
+rewrite ^/port/notice-to-mariners     /port/navigation-pilotage/notice-to-mariners permanent;
+rewrite ^/port/open-storage           /port/business-through-the-port permanent;
+rewrite ^/port/operating-rules        /port/navigation-pilotage permanent;
+rewrite ^/port/operational-notices    /port/navigation-pilotage/operational-notices permanent;
+rewrite ^/port/pilotage               /port/navigation-pilotage permanent;
+rewrite ^/port/port-opportunities     /port permanent;
+rewrite ^/port/quays-cranes           /port permanent;
+rewrite ^/port/ro-ro                  /port/business-through-the-port permanent;
+rewrite ^/port/safety                 /corporate/safety permanent;
+rewrite ^/port/safety-bulletins       /port/navigation-pilotage/operational-notices permanent;
+rewrite ^/port/safety-team            /corporate/safety permanent;
+rewrite ^/port/towage$                /port/towage-and-boating permanent;
+rewrite ^/port/transit-sheds          /port permanent;
+rewrite ^/port/vacant-facilities      /port permanent;
+rewrite ^/port/waste                  /port/renewables permanent;
+rewrite ^/port/wind                   /port/renewables permanent;
+
+rewrite ^/real-estate/cq1                            /real-estate/developments/city-quays permanent;
+rewrite ^/real-estate/seed                           /real-estate permanent;
+rewrite ^/real-estate/sydenham-business-park         /real-estate/developments/sydenham-business-park permanent;
+rewrite ^/real-estate/titanic-quarter                /real-estate/developments/titanic-quarter permanent;
+rewrite ^/real-estate/city-quays-1                   /real-estate/developments/city-quays permanent;
+rewrite ^/real-estate/development-opportunities      /real-estate/developments permanent;
+rewrite ^/real-estate/harbour-community              /real-estate permanent;
+rewrite ^/real-estate/invest                         /real-estate/why-belfast permanent;
+rewrite ^/real-estate/meet-the-real-estate-team      /real-estate/real-estate-team permanent;
+rewrite ^/real-estate/public-art                     /corporate/public-art permanent;
+rewrite ^/real-estate/seed                           /real-estate/developments permanent;
+rewrite ^/real-estate/sustainability-conservationism /corporate/environment permanent;
+rewrite ^/real-estate/sydenham-business-park         /real-estate/developments/sydenham-business-park permanent;
+rewrite ^/real-estate/titanic-quarter                /real-estate/developments/titanic-quarter permanent;
+
+rewrite ^/terms-conditions    /about-us/our-status/terms-conditions permanent;
+rewrite ^/uploads/doc/$       /documents permanent;
+rewrite ^/uploads/docx/$      /documents permanent;
+rewrite ^/uploads/pdf/$       /documents permanent;
+rewrite ^/welcome             / permanent;
+rewrite ^/welcome/corporate   /corporate permanent;
+rewrite ^/welcome/general     / permanent;
+rewrite ^/welcome/legacy      /about-us/history/our-legacy permanent;
+rewrite ^/welcome/port        /port permanent;
+rewrite ^/welcome/real-estate /real-estate permanent;
