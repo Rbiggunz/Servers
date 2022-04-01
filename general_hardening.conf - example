@@ -1,0 +1,67 @@
+make as a separate file and then add through website_name.vhost file like so:
+
+### Nginx configuration.
+server {
+    listen 80; # IPv4
+    server_name www.cruise.belfast-harbour.co.uk cruise.belfast-harbour.co.uk;
+    return 301 https://cruise.belfast-harbour.co.uk$request_uri;
+
+}
+
+server {
+
+    ## Include general nginx hardening rules.
+    include sites-available/general_hardening.conf;
+
+    ## Customer redirects
+    include sites-available/redirects.conf;
+    
+    ## WP Hardening
+    include sites-available/wp_hardening.conf;
+}
+
+
+here is the code example:
+
+## Redirect 403 errors to 404 error to fool attackers
+error_page 403 = 404;
+
+## See the blacklist.conf file at the parent dir: /etc/nginx.
+## Deny access based on the User-Agent header.
+#if ($bad_bot) {
+#        return 444;
+#}
+## Deny access based on the Referer header.
+if ($bad_referer) {
+        return 444;
+}
+
+## If no favicon exists return a 204 (no content error).
+location = /favicon.ico {
+        try_files $uri =204;
+        log_not_found off;
+        access_log off;
+}
+
+## Don't log robots.txt requests.
+location = /robots.txt {
+        allow all;
+        log_not_found off;
+        access_log off;
+}
+
+## Disable access to hidden files
+location ~ /\.        { 
+        access_log off; 
+        log_not_found off; 
+        deny all;
+}
+location ~ ~$i        {
+        access_log off; 
+        log_not_found off; 
+        deny all;
+}
+
+location @admin_ban {
+        rewrite ^(.*) http://www.example.com permanent;
+}
