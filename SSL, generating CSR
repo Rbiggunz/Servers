@@ -1,0 +1,5 @@
+https://uk.godaddy.com/help/nginx-generate-csrs-certificate-signing-requests-3601
+
+after generating a .key file and .csr, just need to include .key and .crt files in .vhosts.
+
+If SSL doesn't work, just need to rekey the certificate.
