@@ -6,7 +6,9 @@ WORKFLOW 1:
 Potential workflow, if SSL was installed before and all you need is to just update cert:
 1. Download package from godaddy/etc;
 2. Go into apache/enginx config (/etc/apache2/sites-available), open website config, find SSL module
-3. Leave the .key file as it is, only upload new .crt file and adjust website config accordingly. Restart server.
+3. Leave the .key file as it is, upload new .crt file, combine new crt with the bundle like so:
+    cat royalportrushgolfclub.com.crt gd_bundle-g2-g1.crt > bundle_chained.crt
+4. Adjust website config accordingly. Restart server.
 *************************************************************************************************************
 
 
