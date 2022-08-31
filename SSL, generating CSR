@@ -10,7 +10,12 @@ openssl req -new -newkey rsa:2048 -nodes -keyout trinseo.key -out trinseo.csr
 
 2. Request rekey certificate, wate till it is approved and download the new package.
 
-3. Combine crt and bundle in 1 file:
+3. Combine crt and bundle in 1 file (if bundle required, otherwise use crt file included in the download):
 cat trinseo.crt gd_bundle-g2-g1.crt > bundle_chained.crt
 
 4. In .vhosts replace old crt and key with new crt bundle and new key;
+
+
+USEFUL LINKS:
+CSR decoder to check registered owner data:
+https://ssltools.godaddy.com/views/csrDecoder
