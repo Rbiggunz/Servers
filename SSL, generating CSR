@@ -3,3 +3,14 @@ https://uk.godaddy.com/help/nginx-generate-csrs-certificate-signing-requests-360
 after generating a .key file and .csr, just need to include .key and .crt files in .vhosts.
 
 If SSL doesn't work, just need to rekey the certificate.
+
+Potential workflow:
+1. Generate new key and csr:
+openssl req -new -newkey rsa:2048 -nodes -keyout trinseo.key -out trinseo.csr
+
+2. Request rekey certificate, wate till it is approved and download the new package.
+
+3. Combine crt and bundle in 1 file:
+cat trinseo.crt gd_bundle-g2-g1.crt > bundle_chained.crt
+
+4. In .vhosts replace old crt and key with new crt bundle and new key;
