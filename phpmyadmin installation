@@ -1,0 +1,14 @@
+
+how to install guide:
+https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-20-04
+
+if doesn't work:
+https://askubuntu.com/questions/668734/the-requested-url-phpmyadmin-was-not-found-on-this-server
+
+if after install getting 
+"<?php
+declare(strict_types=1);
+use PhpMyAdmin\Routing;"
+
+follow this guide:
+https://stackoverflow.com/questions/69587299/phpmyadmin-not-working-after-fresh-install-with-apache2
