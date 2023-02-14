@@ -1,0 +1,13 @@
+setting up mysql 5 and phpmyadmin on server + allow remote connections to this DB:
+1. VPS cloud panel of the main server, that will be using remote DBs, Firewall Policies - allow SQL (1433);
+2. remove any previous MySQL Versions (https://askubuntu.com/questions/594944/compiled-mysql-conflicts-with-already-existing-mysql)
+3. Install MySQL server (https://www.devart.com/dbforge/mysql/how-to-install-mysql-on-ubuntu/)
+4. Install phpmyadmin
+5. go to /etc/apache2, open apache2.conf, add in the end of the file string Include /etc/phpmyadmin/apache.conf
+6. if phpmyadmin throws an error, check this guide: https://stackoverflow.com/questions/69587299/phpmyadmin-not-working-after-fresh-install-with-apache2
+7. PhpMyAdmin => create user "remote_admin", grant all priveleges, access from Plesk host(server that will be using this remote DB), flush privileges;
+8. /etc/mysql/mysql.conf.d, edit mysqld.cnf, comment out bind-address	= 127.0.0.1 (means will listen all requests not just localhost)
+9. na db server dolzhen bit otkluchen firewall na porti: 22, 80, 443, 3306
+10. Whitelist on firewall: sudo ufw allow from ip_that_will_use_this_db to any port 3306
+11. SSH to plesk, try to connect to remote DB server: mysql -u remote_admin -h 217.174.245.254 -P 3306 -D mysql -p
+12. Add remote DB in Plesk;
